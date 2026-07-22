@@ -10,7 +10,6 @@
  * @Description: 
 -->
 ---
-sidebar_position: 8
 ---
 
 # LlamaIndex
@@ -61,4 +60,4 @@ source llamaindex_venv/bin/activate
 python -c "from llama_index.core import VectorStoreIndex, SimpleDirectoryReader; print('llama-index  导入成功！')"
 ```
 
-![](../static/llamaindex-demo.png)
+![LlamaIndex 示例运行效果](../compute_stack/images/llamaindex-demo.png)

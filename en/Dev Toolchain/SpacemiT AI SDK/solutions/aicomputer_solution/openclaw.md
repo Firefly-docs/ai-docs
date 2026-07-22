@@ -1,5 +1,3 @@
-sidebar_position: 8
-
 # OpenClaw (Cloud Compute)
 
 ## Environment Requirements

@@ -1,5 +1,3 @@
-sidebar_position: 2
-
 # AI 计算软件栈列表
 
 - [SpacemiT-ONNXRuntime](onnxruntime.md)

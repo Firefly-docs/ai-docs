@@ -1,5 +1,3 @@
-sidebar_position: 2
-
 # SpaceMITExecutionProvider加速算子
 
 >+ 本章节罗列SpaceMITExecutionProvider支持的加速算子及其在capability判定阶段的限制

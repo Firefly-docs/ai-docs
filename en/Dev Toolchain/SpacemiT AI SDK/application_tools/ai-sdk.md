@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 ---
 
 # SpacemiT AI SDK

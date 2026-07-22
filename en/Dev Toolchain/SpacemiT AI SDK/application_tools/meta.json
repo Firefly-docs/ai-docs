@@ -1,0 +1,5 @@
+{
+  "title": "Application Software Stack",
+  "pagesIndex": "index",
+  "pages": ["index", "ai-sdk", "llmsdk", "speechsdk", "langchain", "ollama", "localai", "openwebui", "llamaindex"]
+}

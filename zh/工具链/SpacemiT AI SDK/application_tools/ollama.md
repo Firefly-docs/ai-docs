@@ -10,7 +10,6 @@
  * @Description: 
 -->
 ---
-sidebar_position: 5
 ---
 
 # Ollama

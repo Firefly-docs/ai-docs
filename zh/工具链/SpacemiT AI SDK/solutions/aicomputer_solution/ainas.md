@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # AI NAS
 
 **NAS**(Network Attached Storage)是以网络协议对外提供文件、对象、备份、媒体与应用服务的专用存储设备。**AI NAS**（AI Network Attached Storage）是在传统 NAS 存储功能基础上，融合本地 AI 推理能力的新型存储设备。区别于传统 NAS 仅提供文件存储与共享服务，AI NAS 可在本地完成图像识别、视频分析、智能检索、多模态问答等 AI 任务，数据无需上传云端，兼顾隐私保护与低延迟响应。

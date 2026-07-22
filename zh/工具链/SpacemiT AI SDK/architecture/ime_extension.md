@@ -1,5 +1,3 @@
-sidebar_position: 3
-
 # SpacemiT AI 矩阵扩展指令集
 
 **`Zvvm_spacemit` Profile**

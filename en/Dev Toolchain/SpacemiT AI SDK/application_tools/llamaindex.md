@@ -1,5 +1,4 @@
 ---
-sidebar_position: 8
 ---
 
 # LlamaIndex
@@ -55,4 +54,4 @@ python -c "from llama_index.core import VectorStoreIndex, SimpleDirectoryReader;
 
 The following output indicates that LlamaIndex has been installed and imported successfully:
 
-![LlamaIndex import verification](../static/llamaindex-demo.png)
+![LlamaIndex import verification](../compute_stack/images/llamaindex-demo.png)

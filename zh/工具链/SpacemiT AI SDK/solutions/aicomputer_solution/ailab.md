@@ -1,5 +1,3 @@
-sidebar_position: 10
-
 # SpacemiT AI Lab
 
 **SpacemiT AI Lab** 是一个基于 Web 的 AI 评估平台。用户通过网页申请云 K3 实例，无需任何硬件准备，即可在线体验 SpacemiT K3 AI CPU 上的模型推理效果与真实性能数据，实现 **<big>零配置、即开即用</big>** 的评估体验。

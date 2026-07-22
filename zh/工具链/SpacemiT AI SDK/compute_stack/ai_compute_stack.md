@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # AI 计算软件栈
 
 ## 软件栈框架

@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # Solution Overview
 
 SpacemiT AI Robot reference solutions are designed for ROS and AI robotics applications, with a focus on validating AI capabilities and accelerating solution deployment in real-world robot scenarios:

@@ -1,5 +1,3 @@
-sidebar_position: 9
-
 # ModelZoo
 >
 > ModelZoo内模型数据定期更新，模型应用示例请参考[ai-sdk
