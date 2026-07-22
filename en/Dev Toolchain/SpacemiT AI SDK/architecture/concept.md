@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # 4.1 Design Philosophy
 
 ## 4.1.1 Overview

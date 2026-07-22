@@ -1,5 +1,3 @@
-sidebar_position: 4
-
 # Compute Software Stack
 
 - [AI Compute Software Stack Overview](ai_compute_stack.md)

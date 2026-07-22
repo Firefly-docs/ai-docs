@@ -1,5 +1,3 @@
-sidebar_position: 2
-
 # 4.2 Matrix Extension Instruction Set
 
 ## 4.2.1 Instruction Set Overview

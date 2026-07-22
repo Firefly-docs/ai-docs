@@ -1,5 +1,3 @@
-sidebar_position: 5
-
 # AgentForce
 
 **AgentForce** is an AI digital employee management platform built on Hermes Agent and OpenClaw. It provides a visual web interface for creating, managing, and interacting with multiple AI digital employees. Each employee has an independent personality, memory, and skill set, along with autonomous learning and task execution capabilities.

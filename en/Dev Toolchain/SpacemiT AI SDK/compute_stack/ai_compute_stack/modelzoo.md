@@ -1,5 +1,3 @@
-sidebar_position: 9
-
 # ModelZoo
 
 > Model data in ModelZoo is updated regularly. For model application examples, refer to [ai-sdk](https://github.com/spacemit-com/ai-sdk).

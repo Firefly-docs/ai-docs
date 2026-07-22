@@ -10,7 +10,6 @@
  * @Description: 
 -->
 
-sidebar_position: 4
 
 # 见智(Seewise)
 

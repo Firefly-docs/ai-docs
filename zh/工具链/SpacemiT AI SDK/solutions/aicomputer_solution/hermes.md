@@ -9,7 +9,6 @@
  * @FilePath: \doc\docs-ai\zh\solutions\aicomputer_solution\hermes.md
  * @Description: 
 -->
-sidebar_position: 9
 
 # Hermes Agent(云端算力)
 

@@ -1,5 +1,3 @@
-sidebar_position: 8
-
 # Quick Start Guide
 
 A step-by-step YOLOv8 inference example

@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # 解决方案汇总
 
 AI Robot 解决方案面向 ROS 与 AI 机器人应用，聚焦机器人场景中的 AI 能力验证与方案落地：

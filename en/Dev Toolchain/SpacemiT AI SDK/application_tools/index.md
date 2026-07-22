@@ -9,7 +9,6 @@
  * @FilePath: \doc\docs-ai\zh\application_tools\index.md
  * @Description: 
 -->
-sidebar_position: 3
 
 # Application Software Stack
 

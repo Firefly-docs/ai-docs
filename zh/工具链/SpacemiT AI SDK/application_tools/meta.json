@@ -1,0 +1,5 @@
+{
+  "title": "应用软件栈",
+  "pagesIndex": "index",
+  "pages": ["index", "ai-sdk", "llmsdk", "speechsdk", "langchain", "ollama", "localai", "openwebui", "llamaindex"]
+}

@@ -1,5 +1,3 @@
-sidebar_position: 8
-
 # OpenClaw(云端算力)
 
 ## 环境要求

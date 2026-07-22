@@ -1,5 +1,3 @@
-sidebar_position: 5
-
 # 计算架构
 
 - [设计理念](concept.md)

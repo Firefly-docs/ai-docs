@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # SpacemiT-ONNXRuntime
   
 **SpacemiT-ONNXRuntime** integrates the base inference library of [ONNXRuntime](https://github.com/microsoft/onnxruntime) with the SpacemiT ExecutionProvider acceleration backend. The overall architecture remains decoupled, so its usage is almost identical to the community version of ONNXRuntime.

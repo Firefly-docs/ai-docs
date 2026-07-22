@@ -11,7 +11,6 @@
 -->
 ---
 slug: /ai
-sidebar_position: 2
 ---
 
 # AI Computer解决方案汇总

@@ -1,5 +1,3 @@
-sidebar_position: 1
-
 # AI Compute Software Stack
 
 ## Software Stack Architecture

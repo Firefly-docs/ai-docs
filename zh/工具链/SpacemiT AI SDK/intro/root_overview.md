@@ -9,7 +9,6 @@
  * @FilePath: \doc\docs-ai\zh\intro\root_overview.md
  * @Description: 
 -->
-sidebar_position: 1
 
 # 进迭时空 RISC-V AI 计算平台
 
