@@ -1,10 +1,6 @@
 # RKLLM
 
-RKLLM SDK 用于将大语言模型转换为 RKLLM 格式，并通过 Rockchip NPU 在板端运行推理。
-
-- [RKLLM 简介](./start.md)
-- [RKLLM-Toolkit](./toolkit.md)
-- [模型转换与板端部署](./deployment.md)
-- [常见问题](./faq.md)
-
-获取 SDK：[rknn-llm](https://github.com/airockchip/rknn-llm)
+- [1. RKLLM 介绍](./start.md)
+- [2. RKLLM-Toolkit 安装](./toolkit.md)
+- [3. 大语言模型部署例程](./deployment.md)
+- [5. FAQs](./faq.md)

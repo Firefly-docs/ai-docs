@@ -1,20 +1,10 @@
-# RKNN2 FAQ
+# 1.6 FAQs
+**Q1:Why is there a decrease in inference accuracy of the rknn model compared to the original model?**
 
-## The RKNN model is less accurate than the source model
+A1：Please refer to the accuracy troubleshooting section in the document《Rockchip_RKNPU_User_Guide_RKNN_SDK*》 to step-by-step identify the cause.
 
-Follow the accuracy troubleshooting section in the RKNN SDK documentation. Check preprocessing, input layout, the quantization dataset, output parsing, and operator errors in sequence.
+**Q2:It prompts that the 'expand' is not supported**
 
-## Model conversion reports that the Expand operator is unsupported
+A2：Try to update RKNN-Toolkit2/RKNPU2 to the latest version or modify the model and use ‘Repeat’ instead of ‘Expand’.
 
-Update RKNN-Toolkit2 and RKNPU2 to compatible newer versions, or replace `expand` in the source model with a supported implementation such as `repeat`.
-
-## The model cannot be loaded on the target device
-
-Verify that the following components are mutually compatible:
-
-- RKNN-Toolkit2
-- `librknnrt.so`
-- The NPU driver on the target device
-- The target platform selected when the RKNN model was generated
-
-For more troubleshooting information, see the `doc` directory in the RKNN SDK and the `Rockchip_RKNPU_User_Guide_RKNN_SDK` document.
+**For more conversion issues or error causes, please refer to the Trouble Shooting section in the document《Rockchip_RKNPU_User_Guide_RKNN_SDK\*》**

@@ -1,38 +1,24 @@
-# RKLLM-Toolkit
-
-RKLLM-Toolkit currently runs on a Linux x86_64 PC. Ubuntu 20.04 and a Conda-managed Python environment are recommended.
-
-## Installation
-
-```bash
+# 2.RKLLM-Toolkit Installation
+The RKLLM-Toolkit is currently only available for Linux PC, with `Ubuntu 20.04(x64)` recommended. Since multiple versions of Python environments might be present on the system, it is advisable to use miniforge3 to manage Python environments.
+```
+# Check if miniforge3 and conda are installed, and if they are, you can skip this section.
+conda -V
+# Download the miniforge3 installer package.
+wget -c https://mirrors.bfsu.edu.cn/github-release/conda-forge/miniforge/LatestRelease/Miniforge3-Linux-x86_64.sh
+# Install miniforge3
+chmod 777 Miniforge3-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh
+# Activate the Conda base environment. The installation directory for miniforge3 will be the default location for Conda.
+source ~/miniforge3/bin/activate
+# Create a Conda environment named RKLLM-Toolkit with Python 3.8 (recommended version).
 conda create -n RKLLM-Toolkit python=3.8
+# Enter RKLLM-Toolkit Conda environment
 conda activate RKLLM-Toolkit
-
+# Install RKLLM-Toolkit,such as rkllm_toolkit-1.1.4-cp38-cp38-linux_x86_64.whl
 pip3 install rkllm-toolkit/rkllm_toolkit-1.1.4-cp38-cp38-linux_x86_64.whl
 ```
-
-The wheel name above is only an example. Install the file included with the SDK that matches the selected Python version.
-
-Verify the installation:
-
-```python
+If the following command executes without errors, the installation was successful:
+```
+python
 from rkllm.api import RKLLM
 ```
-
-## Supported Models
-
-RKLLM supports multiple mainstream LLMs and VLMs. The exact support matrix changes between SDK releases. Common model families include:
-
-| Model | Reference |
-| --- | --- |
-| DeepSeek-R1-Distill | [Hugging Face](https://huggingface.co/collections/deepseek-ai/deepseek-r1-678e1e131c0169c0bc89728d) |
-| Llama | [Hugging Face](https://huggingface.co/meta-llama) |
-| TinyLlama | [Hugging Face](https://huggingface.co/TinyLlama) |
-| Qwen | [Hugging Face](https://huggingface.co/models?search=Qwen/Qwen) |
-| Phi | [Hugging Face](https://huggingface.co/models?search=microsoft/phi) |
-| ChatGLM3-6B | [Hugging Face](https://huggingface.co/THUDM/chatglm3-6b) |
-| Gemma | [Hugging Face](https://huggingface.co/collections/google/gemma-2-release-667d6600fd5220e7b967f315) |
-| InternLM2 | [Hugging Face](https://huggingface.co/collections/internlm/internlm2-65b0ce04970888799707893c) |
-| MiniCPM | [Hugging Face](https://huggingface.co/collections/openbmb/minicpm-65d48bf958302b9fd25b698f) |
-| Qwen2-VL | [Hugging Face](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) |
-| MiniCPM-V | [Hugging Face](https://huggingface.co/openbmb/MiniCPM-V-2_6) |

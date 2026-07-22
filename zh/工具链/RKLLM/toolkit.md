@@ -1,38 +1,24 @@
-# RKLLM-Toolkit
-
-RKLLM-Toolkit 目前运行在 Linux x86_64 PC 上，建议使用 Ubuntu 20.04 并通过 Conda 管理 Python 环境。
-
-## 安装
-
-```bash
+# 2.RKLLM-Toolkit 安装
+RKLLM-Toolkit目前只适用于Linux PC，建议使用`Ubuntu20.04(x64)`。因为系统中可能同时有多个版本的 Python 环境，建议使用 miniforge3 管理 Python 环境。
+```
+# 检查是否安装 miniforge3 和 conda 版本信息，若已安装则可省略此小节步骤。
+conda -V
+# 下载 miniforge3 安装包
+wget -c https://mirrors.bfsu.edu.cn/github-release/conda-forge/miniforge/LatestRelease/Miniforge3-Linux-x86_64.sh
+# 安装 miniforge3
+chmod 777 Miniforge3-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh
+# 进入Conda base 环境，miniforge3 为安装目录
+source ~/miniforge3/bin/activate
+# 创建一个 Python3.8 版本（建议版本）名为 RKLLM-Toolkit 的 Conda 环境
 conda create -n RKLLM-Toolkit python=3.8
+# 进入 RKLLM-Toolkit Conda 环境
 conda activate RKLLM-Toolkit
-
+# 安装 RKLLM-Toolkit，如rkllm_toolkit-1.1.4-cp38-cp38-linux_x86_64.whl
 pip3 install rkllm-toolkit/rkllm_toolkit-1.1.4-cp38-cp38-linux_x86_64.whl
 ```
-
-上述 wheel 文件名仅为示例。实际安装时，应选择 SDK 中与 Python 版本匹配的文件。
-
-验证安装：
-
-```python
+若执行以下命令没有报错，则安装成功。
+```
+python
 from rkllm.api import RKLLM
 ```
-
-## 支持的模型
-
-RKLLM SDK 支持多种主流 LLM 和 VLM，具体支持范围随 SDK 版本变化。常见模型包括：
-
-| 模型 | 参考地址 |
-| --- | --- |
-| DeepSeek-R1-Distill | [Hugging Face](https://huggingface.co/collections/deepseek-ai/deepseek-r1-678e1e131c0169c0bc89728d) |
-| Llama | [Hugging Face](https://huggingface.co/meta-llama) |
-| TinyLlama | [Hugging Face](https://huggingface.co/TinyLlama) |
-| Qwen | [Hugging Face](https://huggingface.co/models?search=Qwen/Qwen) |
-| Phi | [Hugging Face](https://huggingface.co/models?search=microsoft/phi) |
-| ChatGLM3-6B | [Hugging Face](https://huggingface.co/THUDM/chatglm3-6b) |
-| Gemma | [Hugging Face](https://huggingface.co/collections/google/gemma-2-release-667d6600fd5220e7b967f315) |
-| InternLM2 | [Hugging Face](https://huggingface.co/collections/internlm/internlm2-65b0ce04970888799707893c) |
-| MiniCPM | [Hugging Face](https://huggingface.co/collections/openbmb/minicpm-65d48bf958302b9fd25b698f) |
-| Qwen2-VL | [Hugging Face](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) |
-| MiniCPM-V | [Hugging Face](https://huggingface.co/openbmb/MiniCPM-V-2_6) |

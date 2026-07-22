@@ -1,5 +1,5 @@
 {
   "title": "RKNN2",
   "pagesIndex": "index",
-  "pages": ["index"]
+  "pages": ["index", "model-zoo", "start", "toolkit2", "runtime", "faq"]
 }

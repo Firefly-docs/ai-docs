@@ -1,28 +1,9 @@
-# RKLLM 简介
-
-RKLLM SDK 帮助开发者将 Hugging Face 格式的大语言模型部署到 Rockchip NPU 平台。完整工具链包含 PC 端的 RKLLM-Toolkit 和板端的 RKLLM Runtime。
-
-## RKLLM-Toolkit
-
-RKLLM-Toolkit 在 Linux PC 上运行，通过 Python API 提供：
-
-- **模型转换**：将 Hugging Face 格式的 LLM 转换为 RKLLM 模型。
-- **模型量化**：将浮点模型量化为定点模型，支持的量化类型以当前 SDK 文档为准，常用类型包括 W4A16 和 W8A8。
-
-## RKLLM Runtime
-
-RKLLM Runtime 加载 RKLLM-Toolkit 导出的模型，调用板端 NPU 驱动完成推理。应用程序可以设置生成参数，并通过回调函数持续获取生成结果。
-
-```text
-Hugging Face 模型
-        ↓
-RKLLM-Toolkit（Linux PC）
-        ├── 模型转换
-        └── 模型量化
-                 ↓
-             .rkllm 模型
-                 ↓
-RKLLM Runtime（Rockchip 板端）
-                 ↓
-              NPU 推理
-```
+# 1.RKLLM 介绍
+RKLLM SDK可以帮助用户快速将大语言模型部署到RK3588 等 Rockchip NPU 平台上。
+[SDK下载](https://github.com/airockchip/rknn-llm)
+#### 1.1 RKLLM-Toolkit 功能介绍
+RKLLM-Toolkit 是为用户提供在计算机上进行大语言模型的量化、转换的开发套件。通过该工具提供的 Python 接口可以便捷地完成以下功能：
+* 模型转换：支持将 Hugging Face 格式的大语言模型（Large Language Model, LLM）转换为RKLLM 模型，转换后的 RKLLM 模型能够在 Rockchip NPU 平台上加载使用。
+* 量化功能：支持将浮点模型量化为定点模型，目前支持的量化类型包括 w4a16 和 w8a8。
+#### 1.2 RKLLM Runtime 功能介绍
+RKLLM Runtime 主 要 负 责 加 载 RKLLM-Toolkit 转换得到的 RKLLM 模型，并在RK3588 等主控平台通过调用 NPU 驱动在 Rockchip NPU 上实现 RKLLM 模型的推理。在推理RKLLM 模型时，用户可以自行定义 RKLLM 模型的推理参数设置，定义不同的文本生成方式，并通过预先定义的回调函数不断获得模型的推理结果。

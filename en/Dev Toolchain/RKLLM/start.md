@@ -1,28 +1,11 @@
-# RKLLM Introduction
+# 1.RKLLM Introduction
+The RKLLM SDK helps users quickly deploy large language models on Rockchip NPU platforms such as RK3588.
+[SDK Download](https://github.com/airockchip/rknn-llm)
 
-The RKLLM SDK helps developers deploy large language models in Hugging Face format on Rockchip NPU platforms. The complete toolchain consists of RKLLM-Toolkit on the PC and RKLLM Runtime on the target device.
+#### 1.1 RKLLM-Toolkit Functions Introduction
+The RKLLM-Toolkit is a development suite designed for users to perform quantization and conversion of large language models on their computers. Through the Python interface provided by this tool, users can conveniently achieve the following functions:
+* Model Conversion: Supports converting large language models in Hugging Face format to RKLLM models. The converted RKLLM models can be loaded and used on the Rockchip NPU platform.
+* Quantization: Supports quantizing floating-point models to fixed-point models. Currently supported quantization types include w4a16 and w8a8.
 
-## RKLLM-Toolkit
-
-RKLLM-Toolkit runs on a Linux PC and provides Python APIs for:
-
-- **Model conversion**: converts a Hugging Face LLM into an RKLLM model.
-- **Model quantization**: quantizes floating-point models to fixed-point representations. Supported types depend on the SDK release and commonly include W4A16 and W8A8.
-
-## RKLLM Runtime
-
-RKLLM Runtime loads models exported by RKLLM-Toolkit and invokes the NPU driver to perform inference. Applications can configure generation parameters and continuously receive generated output through callback functions.
-
-```text
-Hugging Face model
-        ↓
-RKLLM-Toolkit (Linux PC)
-        ├── Model conversion
-        └── Model quantization
-                 ↓
-             .rkllm model
-                 ↓
-RKLLM Runtime (Rockchip target)
-                 ↓
-              NPU inference
-```
+#### 1.2 RKLLM Runtime Functions Introduction
+The RKLLM Runtime is primarily responsible for loading RKLLM models converted using the RKLLM-Toolkit and performing inference on the Rockchip NPU by invoking the NPU driver on target platforms such as RK3588. During the inference of RKLLM models, users can customize the inference parameters, define various text generation methods, and continuously receive inference results through predefined callback functions.
