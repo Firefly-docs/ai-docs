@@ -1,2 +1,3 @@
 # Aidlux
-- [start](start.md)
+
+- [1. AidLux and Qualcomm NPU Development](start.md)
