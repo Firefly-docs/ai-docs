@@ -43,7 +43,7 @@ Platforms such as RK3588 come with a built-in NPU module; the RK3588 NPU offers 
 ## 1.2 RKNN-Toolkit2
 RKNN-Toolkit2 RKNN-Toolkit2 is a development suite provided for model conversion, inference, and performance evaluation on `PC` and Rockchip NPU platforms. Users can conveniently perform various operations using the Python interface provided by this tool.**Note**:The RKNN-Toolkit2 development suite runs on the `PC x86_64` platform and should not be installed on the target device.
 
-#### 1.2.1 RKNN-Toolkit2 Installation
+### 1.2.1 RKNN-Toolkit2 Installation
 The RKNN SDK offers two installation methods for RKNN-Toolkit2: via Docker and via pip. Users can choose either method for installation. Here is an example using pip on `PC Ubuntu20.04(x64)`.Since there may be multiple versions of Python environments on the system, it is recommended to use miniforge3 to manage the Python environment.
 ```
 # Check if miniforge3 and conda are installed. If already installed, this step can be skipped.
@@ -71,7 +71,7 @@ from rknn.api import RKNN
 ```
 If installation fails or if other installation methods are needed, please refer to the [RKNN SDK documentation](https://github.com/airockchip/rknn-toolkit2/tree/master/doc).
 
-#### 1.2.2 Model Conversion Demo
+### 1.2.2 Model Conversion Demo
 In the rknn-toolkit2/examples directory, there are various function demos. Here, we will run a model conversion demo as an example. This demo shows the process of converting a yolov5 onnx model to an RKNN model on a PC, then exporting and inferring on a simulator. For the specific implementation of model conversion, refer to the demo's source code and the RKNN SDK documentation.
 ```
 root@9893c1c48f42:/rknn-toolkit2/examples/onnx/yolov5# python3 test.py 
@@ -119,15 +119,15 @@ If the rknn-toolkit2 is missing a model demo you need, you can refer to the [rkn
 
 ## 1.3 RKNPU2 Usage
 RKNPU2 provides C/C++ programming interfaces for model inference on the `board-side Rockchip NPU platform`.
-#### 1.3.1 Environment Installation
+### 1.3.1 Environment Installation
 If the RKNPU2 Runtime library file `librknnrt.so` is missing or needs updating on the board, for Linux systems, you can push `rknpu2/runtime/Linux/librknn_api/aarch64/librknnrt.so` to the `/usr/lib` directory using `scp`.
-#### 1.3.2 Board-Side Inference
+### 1.3.2 Board-Side Inference
 The RKNN SDK directory `rknpu2/examples` provides many model inference demos. Users can refer to these examples to develop and deploy their own AI applications.The [rknn_model_zoo](https://github.com/airockchip/rknn_model_zoo) repository also provides C/C++ examples.
 
-### 1.4 RKNN-Toolkit Lite2 Introduction
+## 1.4 RKNN-Toolkit Lite2 Introduction
 RKNN-Toolkit Lite2 provides a `Python` interface for board-side model inference, making it convenient for users to develop AI applications using Python. **Note**: RKNN-Toolkit Lite2 is installed and run on the `board-side`, and it is used only for inference; it does not support model conversion.
 
-#### 1.4.1 RKNN-Toolkit Lite2 Installation
+### 1.4.1 RKNN-Toolkit Lite2 Installation
 ```
 # Install python3/pip3
 sudo apt-get update
@@ -136,10 +136,10 @@ sudo apt-get install -y python3 python3-dev python3-pip gcc python3-opencv pytho
 pip3 install rknn_toolkit_lite2-2.0.0b0-cp310-cp310-linux_aarch64.whl
 
 ```
-#### 1.4.2 RKNN-Toolkit Lite2 Usage
+### 1.4.2 RKNN-Toolkit Lite2 Usage
 In the RKNN SDK/rknn-toolkit-lite2/examples directory, there are applications developed based on RKNN-Toolkit Lite2. Although the number of provided examples is limited, in practice, the interfaces of `RKNN-Toolkit Lite2` and `RKNN-Toolkit2` are quite similar. Users can refer to the RKNN-Toolkit2 examples for porting to RKNN-Toolkit Lite2.
 
-### 1.5 Detailed Development Documentation
+## 1.5 Detailed Development Documentation
 For detailed usage of NPU and Toolkit, please refer to the `doc` documentation under RKNN SDK.
 
 ## 1.6 FAQs
@@ -152,4 +152,3 @@ A1：Please refer to the accuracy troubleshooting section in the document《Rock
 A2：Try to update RKNN-Toolkit2/RKNPU2 to the latest version or modify the model and use ‘Repeat’ instead of ‘Expand’.
 
 **For more conversion issues or error causes, please refer to the Trouble Shooting section in the document《Rockchip_RKNPU_User_Guide_RKNN_SDK\*》**
-

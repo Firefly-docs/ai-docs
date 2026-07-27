@@ -42,7 +42,7 @@ RK3588 等主控内置 NPU 模块，其中 RK3588 NPU 处理性能最高可达6T
 ## 1.2 RKNN-Toolkit2工具
 RKNN-Toolkit2 是为用户提供在`PC`、Rockchip NPU 平台上进行模型转换、推理和性能评估的开发套件，用户通过该工具提供的 Python 接口可以便捷地完成各种操作。**注意**：RKNN-Toolkit2 开发套件运行在`PC x86_64`平台上，请勿安装在目标板端。
 
-#### 1.2.1 RKNN-Toolkit2安装
+### 1.2.1 RKNN-Toolkit2安装
 RKNN SDK 提供两种RKNN-Toolkit2安装方式，通过Docker方式安装和通过pip方式安装，用户可自行选择任意一种方式进行安装。这里以pip方式为例，在`PC Ubuntu20.04(x64)`安装。因为系统中可能同时有多个版本的 Python 环境，建议使用 miniforge3 管理 Python 环境。
 ```
 # 检查是否安装 miniforge3 和 conda 版本信息，若已安装则可省略此小节步骤。
@@ -70,7 +70,7 @@ from rknn.api import RKNN
 ```
 若安装失败或需要其他安装方式请查阅[RKNN SDK文档](https://github.com/airockchip/rknn-toolkit2/tree/master/doc)。
 
-#### 1.2.2 模型转换Demo
+### 1.2.2 模型转换Demo
 在rknn-toolkit2/examples下有各种功能的 Demo ，这里我们运行一个模型转换 Demo 为例子，这个 Demo 展示了在 PC 上将 yolov5 onnx 模型转换成 RKNN 模型，然后导出、在仿真器上推理的过程。模型转换的具体实现请参考 Demo 内源代码以及RKNN SDK文档。
 ```
 root@9893c1c48f42:/rknn-toolkit2/examples/onnx/yolov5# python3 test.py 
@@ -118,14 +118,14 @@ Save results to result.jpg!
 
 ## 1.3 RKNPU2使用
 RKNPU2 提供在`板端Rockchip NPU 平台`上进行模型推理的C/C++编程接口。
-#### 1.3.1 环境安装
+### 1.3.1 环境安装
 RKNPU2 Runtime 库文件`librknnrt.so`，若板端缺少该文件或需要更新，对于Linux系统可以将`rknpu2/runtime/Linux/librknn_api/aarch64/librknnrt.so`通过`scp`推送至`/usr/lib`目录。
-#### 1.3.2 板端推理
+### 1.3.2 板端推理
 在RKNN SDK 目录`rknpu2/examples`提供了许多模型推理Demo，用户可以参考例程开发部署自己的AI应用。[rknn_model_zoo](https://github.com/airockchip/rknn_model_zoo)仓库同样提供了C/C++的例程
 
-### 1.4 RKNN-Toolkit Lite2介绍
+## 1.4 RKNN-Toolkit Lite2介绍
 RKNN-Toolkit Lite2 为用户提供`板端模型推理`的 `Python` 接口，方便用户使用 Python 语言进行 AI 应用开发。**注意**：RKNN-Toolkit Lite2安装运行在`板端`，且仅作推理使用，无法转换模型。
-#### 1.4.1 RKNN-Toolkit Lite2安装
+### 1.4.1 RKNN-Toolkit Lite2安装
 ```
 # 安装python3/pip3
 sudo apt-get update
@@ -133,10 +133,10 @@ sudo apt-get install -y python3 python3-dev python3-pip gcc python3-opencv pytho
 # RKNN-Toolkit Lite2安装，在rknn-toolkit-lite2/packages找到安装包，根据系统python版本安装对应版本
 pip3 install rknn_toolkit_lite2-2.0.0b0-cp310-cp310-linux_aarch64.whl
 ```
-#### 1.4.2 RKNN-Toolkit Lite2使用
+### 1.4.2 RKNN-Toolkit Lite2使用
 在 RKNN SDK/rknn-toolkit-lite2/examples 目录，有基于RKNN-Toolkit Lite2 开发的应用，虽然提供的例程数量有限，但是实际上`RKNN-Toolkit Lite2` 和 `RKNN-Toolkit2`的接口使用是十分类似的，用户完全可以参考RKNN-Toolkit2例程移植到RKNN-Toolkit Lite2。
 
-### 1.5 详细开发文档
+## 1.5 详细开发文档
 NPU 及 Toolkit 详细使用方法请参考RKNN SDK下`doc`文档。
 
 ## 1.6 FAQs
@@ -149,4 +149,3 @@ A1：请参考《Rockchip_RKNPU_User_Guide_RKNN_SDK*》文档的精度排查章�
 A2：尝试更新 RKNN-Toolkit2 / RKNPU2 至最新版本或者采用 repeat 算子来替代 expand 算子。
 
 **更多转换问题或者报错原因可以参考《Rockchip_RKNPU_User_Guide_RKNN_SDK\*》文档常见问题章节**。
-
