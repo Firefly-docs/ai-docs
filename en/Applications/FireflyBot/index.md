@@ -1,2 +1,0 @@
-# FireflyBot
-- [start](start.md)

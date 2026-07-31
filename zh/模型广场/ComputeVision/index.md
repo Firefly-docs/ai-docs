@@ -1,2 +1,0 @@
-# ComputeVision
-- [start](start.md)

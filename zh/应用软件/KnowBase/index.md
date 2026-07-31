@@ -1,2 +1,0 @@
-# KnowBase
-- [start](start.md)

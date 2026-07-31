@@ -1,2 +1,0 @@
-# DirectAI
-- [start](start.md)

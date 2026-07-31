@@ -1,2 +1,0 @@
-# MultiModal
-- [start](start.md)
