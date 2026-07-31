@@ -1,10 +1,10 @@
-# 1. Model Farm 使用指南
+# 2. Model Farm 使用指南
 
 [Model Farm](https://aiot.aidlux.com/zh/models) 是 AidLux 对应的模型广场。平台提供针对高通端侧芯片适配和优化的开源模型、可运行的前后处理与推理示例代码，以及在指定硬件上取得的性能指标。浏览模型和性能数据无需登录；下载模型包和示例代码需要开发者账号。
 
-Model Farm 当前支持 Qualcomm QCS6490、QCS8550、QCS8625、Dragonwing IQ9 和 Dragonwing IQ8 等平台。模型下载后可通过 [AidLux](../../工具链/Aidlux/index.md) 的 AidLite、AidGen 或 Qualcomm QNN 运行。
+Model Farm 当前支持 Qualcomm QCS6490、QCS8550、QCS8625、Dragonwing IQ9 和 Dragonwing IQ8 等平台。模型下载后可通过 AidLux 的 AidLite、AidGen 或 Qualcomm QNN 运行。
 
-## 1.1 选择模型
+## 2.1 选择模型
 
 在模型广场中可按模型类型、数据精度、芯片平台和关键字筛选。模型详情页包含以下评估信息：
 
@@ -19,7 +19,7 @@ Model Farm 当前支持 Qualcomm QCS6490、QCS8550、QCS8625、Dragonwing IQ9 �
 
 同一 SoC 在不同开发板上的性能仅供参考。下载时必须选择与设备芯片、精度和 QNN 后端版本完全一致的条目。
 
-## 1.2 使用 MMS 下载
+## 2.2 使用 MMS 下载
 
 MMS (Model Management Service) 允许在开发板的命令行中查询和下载模型。先在 [开发者账号注册页](https://auth.aidlux.com/zh/register) 注册账号，再登录：
 
@@ -46,12 +46,12 @@ mms get -m yolov6l -p int8 -c qcs8550 -b qnn2.23 -d /home/aidlux/yolov6l
 ```bash
 mms list | grep YOLOv8s | grep FP16
 mms get -m YOLOv8s -p fp16 -c iq9 -b qnn2.36 -d ./
-unzip YOLOv8s_qcs8550_fp16.zip
+unzip YOLOv8s_iq9_fp16.zip
 ```
 
 命令中应始终以本机 `mms list` 的实际输出为准。模型包文件名、内部目录名和示例中使用的芯片代号可能不同，解压后请阅读包内 `README.md`，不要仅按文件名推断兼容性。
 
-## 1.3 运行下载的视觉模型
+## 2.3 运行下载的视觉模型
 
 通过 MMS 获得的视觉模型通常具有以下结构：
 
@@ -76,7 +76,7 @@ sudo python3 python/run_test.py \
 
 Model Farm 中还包含目标检测、分类、单目深度估计、分割、姿态估计和定向边界框检测等模型。典型条目包括 YOLOv8s、ConvNeXt-Tiny、Depth-Anything-V2-Small、FastSAM-S、YOLO11l-Pose 与 YOLO11s-obb。
 
-## 1.4 运行生成式模型
+## 2.4 运行生成式模型
 
 生成式模型由 AidGen 加载：语言模型使用 `aidllm`，视觉语言模型使用 `aidmlm`。MMS 下载后，模型包通常提供一个或多个 `.aidem` 分片和配置所需的缓存、嵌入或视觉模型文件。
 
@@ -100,13 +100,13 @@ make
 
 如果应用通过 HTTP 集成模型，可改用 AidGenSE：使用 `aidllm remote-list api` 查询可下载模型，以 `aidllm pull api <模型地址>` 拉取，再以 `aidllm start api -m <模型名>` 启动 OpenAI 兼容服务。
 
-## 1.5 微调模型和预览模型
+## 2.5 微调模型和预览模型
 
 对于自行微调的模型，可参考模型详情页“模型转换参考”或代码包 README 中的 **Model Conversion Reference**，使用 [AIMO](https://aidlux.com/product/aimo) 转换为高通平台格式，再将输出的 `.amf` 文件替换至示例工程中测试。
 
 模型广场中标有“联系我们”的 Preview 模型不提供网页直接下载。此类模型需要在阿加犀开发板上通过 MMS 获取，并使用 AidLite SDK 推理。
 
-## 1.6 参考资料
+## 2.6 参考资料
 
 - [Model Farm 用户指南](https://docs.aidlux.com/software/model-farm/model_farm_guide)
 - [使用 MMS 快速开始](https://docs.aidlux.com/software/model-farm/model_farm_mms)

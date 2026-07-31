@@ -11,7 +11,7 @@ AidLux 的主要组件如下：
 | AidGenSE | 兼容 OpenAI HTTP 协议的生成式 AI 服务，可通过 HTTP 集成到应用。 |
 | AidStream | 基于 GStreamer 的实时多媒体处理工具包，适合视频和图像分析流程。 |
 
-可从 [AidLux 文档中心](https://docs.aidlux.com/software/) 获取各组件的完整开发文档。已适配、可下载的模型和示例代码请参阅[模型广场](../../模型广场/Aidlux/index.md)。
+可从 [AidLux 文档中心](https://docs.aidlux.com/software/) 获取各组件的完整开发文档。已适配、可下载的模型和示例代码请参阅 [Model Farm 使用指南](model-farm.md)。
 
 ## 1.1 QCS8550：AidLux Web Desktop
 

@@ -1,10 +1,10 @@
-# 1. Model Farm Guide
+# 2. Model Farm Guide
 
 [Model Farm](https://aiot.aidlux.com/en/models) is the model marketplace for AidLux. It provides open-source models optimized for Qualcomm edge chipsets, runnable preprocessing, postprocessing, and inference examples, and performance figures measured on the stated hardware. Browsing models and performance data does not require an account; downloading model packages and example code does.
 
-Model Farm supports Qualcomm QCS6490, QCS8550, QCS8625, Dragonwing IQ9, and Dragonwing IQ8 platforms. Downloaded models can run with [AidLux](../../Dev%20Toolchain/Aidlux/index.md) through AidLite, AidGen, or Qualcomm QNN.
+Model Farm supports Qualcomm QCS6490, QCS8550, QCS8625, Dragonwing IQ9, and Dragonwing IQ8 platforms. Downloaded models can run with AidLux through AidLite, AidGen, or Qualcomm QNN.
 
-## 1.1 Selecting a Model
+## 2.1 Selecting a Model
 
 Use model type, precision, chipset, and keyword filters to locate a model. A model detail page provides the following evaluation data:
 
@@ -19,7 +19,7 @@ Use model type, precision, chipset, and keyword filters to locate a model. A mod
 
 Performance on another board with the same SoC is for reference only. Always download an entry whose chipset, precision, and QNN backend version exactly match the target environment.
 
-## 1.2 Downloading with MMS
+## 2.2 Downloading with MMS
 
 MMS (Model Management Service) lets developers query and download models from a board terminal. Register an account on the [developer registration page](https://auth.aidlux.com/en/register), then sign in:
 
@@ -51,7 +51,7 @@ unzip YOLOv8s_iq9_fp16.zip
 
 Always use the actual local `mms list` output. Package filenames, internal directory names, and chipset aliases in examples can differ. After extraction, follow the package `README.md` rather than inferring compatibility from its filename.
 
-## 1.3 Running Downloaded Vision Models
+## 2.3 Running Downloaded Vision Models
 
 Vision-model packages downloaded through MMS generally have this structure:
 
@@ -76,7 +76,7 @@ sudo python3 python/run_test.py \
 
 Model Farm includes models for object detection, classification, monocular depth estimation, segmentation, pose estimation, and oriented bounding-box detection. Example entries include YOLOv8s, ConvNeXt-Tiny, Depth-Anything-V2-Small, FastSAM-S, YOLO11l-Pose, and YOLO11s-obb.
 
-## 1.4 Running Generative Models
+## 2.4 Running Generative Models
 
 AidGen loads generative models: use `aidllm` for language models and `aidmlm` for vision-language models. An MMS package normally contains one or more `.aidem` shards plus cache, embedding, or vision-model files required by its configuration.
 
@@ -100,13 +100,13 @@ Available models vary by platform and QNN backend. The source tutorials include 
 
 For HTTP integration, use AidGenSE instead: query models with `aidllm remote-list api`, download one with `aidllm pull api <model-address>`, then start an OpenAI-compatible service with `aidllm start api -m <model-name>`.
 
-## 1.5 Fine-Tuned and Preview Models
+## 2.5 Fine-Tuned and Preview Models
 
 For a fine-tuned model, refer to **Model Conversion Reference** on the model detail page or in the package README. Use [AIMO](https://aidlux.com/en/product/aimo) to convert the model to a Qualcomm platform format, then replace the model in the example project with the generated `.amf` file for testing.
 
 Preview models marked **Contact Us** are not available for direct download from the website. Obtain these models through MMS on an APLUX development board and run them with AidLite SDK.
 
-## 1.6 References
+## 2.6 References
 
 - [Model Farm User Guide](https://docs.aidlux.com/en/software/model-farm/model_farm_guide)
 - [Quick Start with MMS](https://docs.aidlux.com/en/software/model-farm/model_farm_mms)

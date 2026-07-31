@@ -11,7 +11,7 @@ AidLux consists of the following primary components:
 | AidGenSE | Generative AI service compatible with the OpenAI HTTP protocol. |
 | AidStream | GStreamer-based real-time multimedia processing toolkit for video and image analysis pipelines. |
 
-See the [AidLux Documentation Center](https://docs.aidlux.com/en/software/) for complete component documentation. For optimized models and runnable example code, see the [AidLux Model Farm](../../Model%20Zoo/Aidlux/index.md).
+See the [AidLux Documentation Center](https://docs.aidlux.com/en/software/) for complete component documentation. For optimized models and runnable example code, see the [Model Farm Guide](model-farm.md).
 
 ## 1.1 QCS8550: AidLux Web Desktop
 
