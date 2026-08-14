@@ -1,0 +1,6 @@
+{
+  "title": "Advanced Guides",
+  "collapsible": true,
+  "defaultOpen": true,
+  "pages": ["cli-command-guide", "server-operations", "api-reference"]
+}
