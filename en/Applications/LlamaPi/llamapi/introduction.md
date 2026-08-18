@@ -56,7 +56,7 @@ LlamaPi has two main components:
 
 - Set up LlamaPi for the first time: [Quick Start](../getting-started/quickstart.md)
 - Download and manage local models: [Download and Manage Models](../getting-started/model-download-and-management.md)
-- Load, run, and unload models: [Load and Run Models](../getting-started/model-load-and-run.md)
+- Run and deploy models: [Run and Deploy Models](../getting-started/model-load-and-run.md)
 - Configure automatic model loading: [Persistent Deployment](../getting-started/model-persistence.md)
 - Connect an existing application to a local model: [Connect Third-Party Applications](../getting-started/third-party-integration.md)
 - Look up complete command options: [Terminal Command Guide](../advanced-guides/cli-command-guide.md)

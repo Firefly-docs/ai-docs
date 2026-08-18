@@ -6,8 +6,6 @@ This page records LlamaPi features, behavior changes, and fixes.
 
 ## 0.2.0
 
-This is the first LlamaPi release.
-
 ### Added
 
 #### Model Deployment and Execution

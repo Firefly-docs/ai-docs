@@ -56,7 +56,7 @@ LlamaPi 由两个主要组件组成：
 
 - 初次使用 LlamaPi：[快速开始](../getting-started/quickstart.md)
 - 下载和管理本地模型：[模型下载与管理](../getting-started/model-download-and-management.md)
-- 加载、运行和卸载模型：[模型加载与运行](../getting-started/model-load-and-run.md)
+- 运行和部署模型：[模型运行与部署](../getting-started/model-load-and-run.md)
 - 配置模型自动加载：[持久化部署](../getting-started/model-persistence.md)
 - 将本地模型接入现有应用：[接入第三方应用](../getting-started/third-party-integration.md)
 - 查询完整命令参数：[终端命令详解](../advanced-guides/cli-command-guide.md)

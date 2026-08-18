@@ -44,6 +44,6 @@ llamapi list --online
 ## 下一步
 
 - 下载和删除本地模型：[模型下载与管理](./model-download-and-management.md)
-- 加载、运行和卸载模型：[模型加载与运行](./model-load-and-run.md)
+- 运行和部署模型：[模型运行与部署](./model-load-and-run.md)
 - 配置模型开机自动加载：[持久化部署](./model-persistence.md)
 - 将模型接入现有应用：[接入第三方应用](./third-party-integration.md)

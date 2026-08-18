@@ -6,7 +6,7 @@ This guide uses a chat model to explain the general integration flow. See the [A
 
 ## Prerequisites
 
-Before configuring a third-party application, verify the service, model, and network states. Run the service and model checks on the device running LlamaPi, and run the network check on the device hosting the third-party application.
+Before connecting a third-party application, follow the steps below to verify that LlamaPi is running properly and that the network is reachable.
 
 ### Check the Service and Inference Platform
 
@@ -24,25 +24,11 @@ Unsupported platforms:  rknn3
 Service:                running  (http://127.0.0.1:9265/v1)
 ```
 
-Then check the health endpoint:
+The LlamaPi service and inference platforms are operating normally when the output identifies the `SoC`, lists at least one entry under `Supported platforms`, and shows `Service: running`.
 
-```bash
-curl -s http://127.0.0.1:9265/health
-```
+`Coprocessor: null` is normal on devices without a coprocessor. Entries under `Unsupported platforms` do not prevent the supported platforms from being used.
 
-A healthy service returns:
-
-```text
-ok
-```
-
-How to interpret the result:
-
-- `Service: running` means the LlamaPi service is running and the API base URL is `http://127.0.0.1:9265/v1`.
-- A standalone `ok` response from `/health` means that the HTTP service responds normally.
-- If the output shows `Service: not running`, `/health` cannot connect, or `Supported platforms` is `none`, the prerequisites are not met. Start the service or troubleshoot the inference platform first.
-
-### Check That a Model Is Loaded
+### Check That the Required Model Is Loaded
 
 ```bash
 llamapi ps
@@ -55,11 +41,14 @@ ID                         MODEL       TYPE   PLATFORM       STATUS       INSTAN
 qwen3:4b@rkllm-rk3588      qwen3:4b    chat   rkllm/rk3588   ● active     1            no
 ```
 
-How to interpret the result:
+Find the model you plan to connect and verify that:
 
-- At least one model row must have `TYPE` set to `chat` and `STATUS` set to `● active` before it can receive chat requests.
-- Use the complete value in the `ID` column as the model name in the third-party application. Do not use only the display name in the `MODEL` column.
-- If there is no row, or the status is `○ inactive`, load a model first:
+- The `MODEL` column matches the model you want to use. If multiple rows have the same model name, use the `PLATFORM` column to distinguish the inference-platform variants.
+- A model with `TYPE` set to `chat` can receive chat requests, while a model with `TYPE` set to `embedding` can receive text embedding requests. `STATUS` set to `● active` indicates that the model is loaded and can receive requests of the corresponding type.
+
+After confirming the model, use the complete value from the `ID` column as the model name in the third-party application. Do not enter only the display name from the `MODEL` column.
+
+If the required model is missing or its status is `○ inactive`, [load the model](./model-load-and-run.md) first:
 
 ```bash
 llamapi load qwen3:4b
@@ -67,31 +56,25 @@ llamapi load qwen3:4b
 
 ### Check Network Reachability
 
-On the device running the third-party application, replace the IP address in this command with the actual IP address of the device running LlamaPi:
+On the device running the third-party application, replace the IP address below with the actual IP address of the device running LlamaPi.
+
+On a Linux terminal:
 
 ```bash
 curl -s http://192.168.1.100:9265/health
 ```
 
-A response of `ok` means that the application device can reach the LlamaPi service. If the connection times out or is refused, the prerequisites are not met yet; check the device IP, firewall, and port `9265`.
+On Windows Terminal (PowerShell or Command Prompt):
 
-## Connection Settings
-
-Third-party applications commonly require the following settings:
-
-| Setting | Value |
-|:---:|:---:|
-| OpenAI Base URL | `http://<device-ip>:9265/v1` |
-| Model | The model ID displayed by `llamapi ps` |
-| API key | Any non-empty value if the application requires one |
-
-In the successful check above, the model ID is:
-
-```text
-qwen3:4b@rkllm-rk3588
+```powershell
+curl.exe -s http://192.168.1.100:9265/health
 ```
 
-## Choose the Service URL
+A response of `ok` means that the application device can reach the LlamaPi service. If the connection times out or is refused, the prerequisites are not met yet; check the device IP, firewall, and port `9265`.
+
+## Prepare Connection Information
+
+### Determine the Service URL
 
 If the third-party application runs on the same device as LlamaPi, use:
 
@@ -111,7 +94,25 @@ On the device running LlamaPi, use the following command to view its IP address:
 hostname -I
 ```
 
-## Verify the API with curl
+### Enter Connection Settings
+
+Third-party applications commonly require the following settings:
+
+| Setting | Value |
+|:---:|:---:|
+| OpenAI Base URL | `http://<device-ip>:9265/v1` |
+| Model | The model ID displayed by `llamapi ps` |
+| API key | Any non-empty value if the application requires one |
+
+In the successful check above, the model ID is:
+
+```text
+qwen3:4b@rkllm-rk3588
+```
+
+## Verify and Configure the Third-Party Application
+
+### Verify the API with curl
 
 First, verify the chat endpoint from a terminal that can access the LlamaPi service:
 
@@ -129,7 +130,7 @@ curl http://127.0.0.1:9265/v1/chat/completions \
 
 Replace `model` with the actual model ID displayed by `llamapi ps`. For access over a LAN, also replace `127.0.0.1` with the IP address of the device running LlamaPi.
 
-## Configure the Application
+### Configure the Application and Send a Test Message
 
 Setting names vary between applications, but the general process is:
 
@@ -142,7 +143,9 @@ Setting names vary between applications, but the general process is:
 
 If the application discovers models automatically, confirm that it requests `/v1/models`. Applications that do not allow a custom Base URL, or that accept only a specific cloud service URL, cannot connect through this general method.
 
-> ⚠️ <strong style="color: #dc2626;">Security reminder</strong>: LlamaPi currently does not provide API authentication. An API key entered in a third-party application only satisfies the client's required-field validation; LlamaPi does not verify it, and it does not restrict access. Use the service only on the local device or a trusted LAN. Do not expose port `9265` directly to the public internet. For access across untrusted networks, add a firewall, reverse proxy, and authentication. See [Service Configuration and Operations](../advanced-guides/server-operations.md#network-access-and-security).
+> ⚠️ <strong style="color: #dc2626;">Security reminder</strong>: LlamaPi currently does not provide API authentication. An API key entered in a third-party application only satisfies the client's required-field validation; LlamaPi does not verify it, and it does not restrict access.
+>
+> Use the service only on the local device or a trusted LAN. Do not expose port `9265` directly to the public internet. For access across untrusted networks, add a firewall, reverse proxy, and authentication. See [Service Configuration and Operations](../advanced-guides/server-operations.md#network-access-and-security).
 
 ## Common Connection Issues
 

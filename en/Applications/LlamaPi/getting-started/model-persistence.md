@@ -1,6 +1,6 @@
 # Persistent Deployment
 
-This guide explains how to load a model automatically when the LlamaPi service starts so it remains available to applications.
+This guide explains how to load a model automatically when the device starts, ensuring that LlamaPi remains available to external applications.
 
 ## Enable Automatic Loading
 
@@ -8,7 +8,7 @@ This guide explains how to load a model automatically when the LlamaPi service s
 llamapi enable qwen3:4b
 ```
 
-This command saves the model's automatic-loading settings. The model loads the next time the LlamaPi service starts.
+This command saves the model's automatic-loading settings. The model loads automatically the next time the device starts.
 
 ## Load Immediately and Verify
 

@@ -2,7 +2,7 @@
 
 `llamapi-cli` 是 LlamaPi 的命令行组件，命令入口为 `llamapi`，用于检查硬件、查询和下载模型、运行对话、管理模型实例以及配置自动加载。
 
-如果希望按任务了解完整使用流程，请先阅读[模型下载与管理](../getting-started/model-download-and-management.md)、[模型加载与运行](../getting-started/model-load-and-run.md)和[持久化部署](../getting-started/model-persistence.md)。本章集中说明每个命令的语法、参数、前置条件、执行行为和输出。
+如果希望按任务了解完整使用流程，请先阅读[模型下载与管理](../getting-started/model-download-and-management.md)、[模型运行与部署](../getting-started/model-load-and-run.md)和[持久化部署](../getting-started/model-persistence.md)。本章集中说明每个命令的语法、参数、前置条件、执行行为和输出。
 
 ## 命令格式
 

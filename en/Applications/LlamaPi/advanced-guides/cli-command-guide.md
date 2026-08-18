@@ -2,7 +2,7 @@
 
 `llamapi-cli` is the LlamaPi command-line component. Its command entry point is `llamapi`, which provides hardware inspection, model discovery and download, chat execution, model instance management, and automatic-load configuration.
 
-For task-oriented workflows, read [Download and Manage Models](../getting-started/model-download-and-management.md), [Load and Run Models](../getting-started/model-load-and-run.md), and [Persistent Deployment](../getting-started/model-persistence.md) first. This chapter documents the syntax, options, prerequisites, behavior, and output of every command.
+For task-oriented workflows, read [Download and Manage Models](../getting-started/model-download-and-management.md), [Run and Deploy Models](../getting-started/model-load-and-run.md), and [Persistent Deployment](../getting-started/model-persistence.md) first. This chapter documents the syntax, options, prerequisites, behavior, and output of every command.
 
 ## Command Format
 

@@ -44,6 +44,6 @@ The following example uses an RK3588 + RK1828 hardware platform:
 ## Next Steps
 
 - Download and remove local models: [Download and Manage Models](./model-download-and-management.md)
-- Load, run, and unload models: [Load and Run Models](./model-load-and-run.md)
+- Run and deploy models: [Run and Deploy Models](./model-load-and-run.md)
 - Configure automatic loading at service startup: [Persistent Deployment](./model-persistence.md)
 - Connect a model to an existing application: [Connect Third-Party Applications](./third-party-integration.md)
