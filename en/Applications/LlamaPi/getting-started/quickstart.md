@@ -25,9 +25,13 @@ llamapi run qwen3:4b
 ```
 
 The `llamapi run` command automatically selects and downloads a model available on the current hardware:
+
 ![quickstart-1](./images/quickstart/quickstart-1.png)
+
 After the model is downloaded and loaded, the terminal enters an interactive chat:
+
 ![quickstart-2](./images/quickstart/quickstart-2.png)
+
 Chat with the model at the prompt, then use `/exit` or `Ctrl+D` to leave.
 
 ## View Models Available on the Current Hardware
@@ -39,6 +43,7 @@ llamapi list --online
 ```
 
 The following example uses an RK3588 + RK1828 hardware platform:
+
 ![quickstart-3](./images/quickstart/quickstart-3.png)
 
 ## Next Steps

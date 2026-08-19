@@ -25,9 +25,13 @@ llamapi run qwen3:4b
 ```
 
 `llamapi run` 命令会自动选择并下载当前硬件可用的模型：
+
 ![quickstart-1](./images/quickstart/quickstart-1.png)
+
 模型下载并加载完成后，终端会进入交互式对话：
+
 ![quickstart-2](./images/quickstart/quickstart-2.png)
+
 在提示符中与模型进行对话，使用 `/exit` 或 `Ctrl+D` 退出对话。
 
 ## 查看当前硬件可用的模型
@@ -39,6 +43,7 @@ llamapi list --online
 ```
 
 以下以 RK3588 + RK1828 硬件平台为例：
+
 ![quickstart-3](./images/quickstart/quickstart-3.png)
 
 ## 下一步
