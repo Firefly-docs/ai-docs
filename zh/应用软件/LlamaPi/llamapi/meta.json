@@ -2,6 +2,5 @@
   "title": "LlamaPi",
   "collapsible": true,
   "defaultOpen": true,
-  "pagesIndex": "introduction",
   "pages": ["introduction", "faq", "changelog"]
 }
