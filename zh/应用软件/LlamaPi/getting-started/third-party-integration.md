@@ -72,9 +72,11 @@ curl.exe -s http://192.168.1.100:9265/health
 
 返回 `ok` 表示第三方应用所在设备可以访问 LlamaPi 服务。如果连接超时或被拒绝，请检查设备 IP、防火墙和端口 `9265`。
 
-### 确认对话接口可用
+### 确认服务接口可用
 
-建议先在能够访问 LlamaPi 服务的终端中验证对话接口：
+建议先在能够访问 LlamaPi 服务的终端中，根据接入需求验证对话接口或词嵌入接口。
+
+对话接口（对应 `TYPE` 为 `chat` 的模型）：
 
 ```bash
 curl http://127.0.0.1:9265/v1/chat/completions \
@@ -85,6 +87,17 @@ curl http://127.0.0.1:9265/v1/chat/completions \
       {"role": "user", "content": "你好"}
     ],
     "stream": false
+  }'
+```
+
+词嵌入接口（对应 `TYPE` 为 `embedding` 的模型）：
+
+```bash
+curl http://127.0.0.1:9265/v1/embeddings \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "bge-m3@rknn2-rk3588",
+    "input": "需要转换为向量的文本"
   }'
 ```
 

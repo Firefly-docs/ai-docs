@@ -72,9 +72,11 @@ curl.exe -s http://192.168.1.100:9265/health
 
 A response of `ok` means that the application device can reach the LlamaPi service. If the connection times out or is refused, the prerequisites are not met yet; check the device IP, firewall, and port `9265`.
 
-### Verify the Chat Endpoint Is Available
+### Verify the Service Endpoint Is Available
 
-First, verify the chat endpoint from a terminal that can access the LlamaPi service:
+From a terminal that can access the LlamaPi service, verify the chat endpoint or the embeddings endpoint depending on your integration needs.
+
+Chat endpoint (for models with `TYPE` set to `chat`):
 
 ```bash
 curl http://127.0.0.1:9265/v1/chat/completions \
@@ -85,6 +87,17 @@ curl http://127.0.0.1:9265/v1/chat/completions \
       {"role": "user", "content": "Hello"}
     ],
     "stream": false
+  }'
+```
+
+Embeddings endpoint (for models with `TYPE` set to `embedding`):
+
+```bash
+curl http://127.0.0.1:9265/v1/embeddings \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "bge-m3@rknn2-rk3588",
+    "input": "text to be converted into a vector"
   }'
 ```
 
