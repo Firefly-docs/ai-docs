@@ -6,7 +6,7 @@ LlamaPi 可以通过 OpenAI 兼容 API 为第三方应用提供本地大模型�
 
 ## 接入前提
 
-接入第三方应用前，请按下列操作逐步确认 LlamaPi 的运行状态以及网络连通性。
+接入第三方应用前，请按下列操作逐步确认 LlamaPi 的运行状态、网络连通性以及接口可用性。
 
 ### 确认服务和推理平台
 
@@ -72,7 +72,25 @@ curl.exe -s http://192.168.1.100:9265/health
 
 返回 `ok` 表示第三方应用所在设备可以访问 LlamaPi 服务。如果连接超时或被拒绝，请检查设备 IP、防火墙和端口 `9265`。
 
-## 准备连接信息
+### 确认对话接口可用
+
+建议先在能够访问 LlamaPi 服务的终端中验证对话接口：
+
+```bash
+curl http://127.0.0.1:9265/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "qwen3:4b@rkllm-rk3588",
+    "messages": [
+      {"role": "user", "content": "你好"}
+    ],
+    "stream": false
+  }'
+```
+
+将 `model` 替换为 `llamapi ps` 显示的实际模型 ID。通过局域网访问时，还需要将 `127.0.0.1` 替换为运行 LlamaPi 的设备 IP。
+
+## 配置第三方应用
 
 ### 确定服务地址
 
@@ -82,16 +100,16 @@ curl.exe -s http://192.168.1.100:9265/health
 http://127.0.0.1:9265/v1
 ```
 
-如果第三方应用位于同一局域网中的其他设备上，将 `<设备 IP>` 替换为运行 LlamaPi 的 Firefly 设备 IP：
-
-```text
-http://192.168.1.100:9265/v1
-```
-
-可以在运行 LlamaPi 的设备上使用以下命令查看 IP 地址：
+如果第三方应用位于同一局域网中的其他设备上，需要先在运行 LlamaPi 的设备上查看其 IP 地址：
 
 ```bash
 hostname -I
+```
+
+假设查询到的设备 IP 为 `192.168.1.100`，将其替换 `<设备 IP>` 后，服务地址为：
+
+```text
+http://192.168.1.100:9265/v1
 ```
 
 ### 填写连接参数
@@ -110,36 +128,14 @@ hostname -I
 qwen3:4b@rkllm-rk3588
 ```
 
-## 验证并配置第三方应用
-
-### 使用 curl 验证接口
-
-建议先在能够访问 LlamaPi 服务的终端中验证对话接口：
-
-```bash
-curl http://127.0.0.1:9265/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "qwen3:4b@rkllm-rk3588",
-    "messages": [
-      {"role": "user", "content": "你好"}
-    ],
-    "stream": false
-  }'
-```
-
-将 `model` 替换为 `llamapi ps` 显示的实际模型 ID。通过局域网访问时，还需要将 `127.0.0.1` 替换为运行 LlamaPi 的设备 IP。
-
 ### 配置应用并发送测试消息
 
 不同应用的设置名称可能不同，但通用配置流程如下：
 
 1. 在应用中选择 OpenAI 或 OpenAI-compatible 服务提供方。
 2. 找到自定义 Base URL、API Endpoint 或服务地址的设置。
-3. 填写 `http://<设备 IP>:9265/v1`。
-4. 将模型名称填写为 `llamapi ps` 显示的模型 ID。
-5. 如果 API Key 为必填项，填写任意非空内容。
-6. 保存配置并发送一条测试消息。
+3. 按照上表填写 Base URL、模型和 API Key。
+4. 保存配置并发送一条测试消息。
 
 如果应用会自动查询模型列表，应确认它访问的是 `/v1/models`。如果应用不能自定义 Base URL，或者只接受特定云服务地址，则无法使用这种通用方式直接接入。
 

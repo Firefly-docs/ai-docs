@@ -6,7 +6,7 @@ This guide uses a chat model to explain the general integration flow. See the [A
 
 ## Prerequisites
 
-Before connecting a third-party application, follow the steps below to verify that LlamaPi is running properly and that the network is reachable.
+Before connecting a third-party application, follow the steps below to verify that LlamaPi is running properly, that the network is reachable, and that the API endpoint is available.
 
 ### Check the Service and Inference Platform
 
@@ -72,7 +72,25 @@ curl.exe -s http://192.168.1.100:9265/health
 
 A response of `ok` means that the application device can reach the LlamaPi service. If the connection times out or is refused, the prerequisites are not met yet; check the device IP, firewall, and port `9265`.
 
-## Prepare Connection Information
+### Verify the Chat Endpoint Is Available
+
+First, verify the chat endpoint from a terminal that can access the LlamaPi service:
+
+```bash
+curl http://127.0.0.1:9265/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "qwen3:4b@rkllm-rk3588",
+    "messages": [
+      {"role": "user", "content": "Hello"}
+    ],
+    "stream": false
+  }'
+```
+
+Replace `model` with the actual model ID displayed by `llamapi ps`. For access over a LAN, also replace `127.0.0.1` with the IP address of the device running LlamaPi.
+
+## Configure the Third-Party Application
 
 ### Determine the Service URL
 
@@ -82,16 +100,16 @@ If the third-party application runs on the same device as LlamaPi, use:
 http://127.0.0.1:9265/v1
 ```
 
-If it runs on another device on the same LAN, replace `<device-ip>` with the IP address of the Firefly device running LlamaPi:
-
-```text
-http://192.168.1.100:9265/v1
-```
-
-On the device running LlamaPi, use the following command to view its IP address:
+If it runs on another device on the same LAN, first check the IP address on the device running LlamaPi:
 
 ```bash
 hostname -I
+```
+
+Assuming the queried device IP is `192.168.1.100`, replace `<device-ip>` with it to get the service URL:
+
+```text
+http://192.168.1.100:9265/v1
 ```
 
 ### Enter Connection Settings
@@ -110,36 +128,14 @@ In the successful check above, the model ID is:
 qwen3:4b@rkllm-rk3588
 ```
 
-## Verify and Configure the Third-Party Application
-
-### Verify the API with curl
-
-First, verify the chat endpoint from a terminal that can access the LlamaPi service:
-
-```bash
-curl http://127.0.0.1:9265/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "qwen3:4b@rkllm-rk3588",
-    "messages": [
-      {"role": "user", "content": "Hello"}
-    ],
-    "stream": false
-  }'
-```
-
-Replace `model` with the actual model ID displayed by `llamapi ps`. For access over a LAN, also replace `127.0.0.1` with the IP address of the device running LlamaPi.
-
 ### Configure the Application and Send a Test Message
 
 Setting names vary between applications, but the general process is:
 
 1. Select OpenAI or an OpenAI-compatible provider in the application.
 2. Find the custom Base URL, API endpoint, or service URL setting.
-3. Enter `http://<device-ip>:9265/v1`.
-4. Enter the model ID displayed by `llamapi ps` as the model name.
-5. If an API key is required, enter any non-empty value.
-6. Save the configuration and send a test message.
+3. Enter the Base URL, model, and API key according to the table above.
+4. Save the configuration and send a test message.
 
 If the application discovers models automatically, confirm that it requests `/v1/models`. Applications that do not allow a custom Base URL, or that accept only a specific cloud service URL, cannot connect through this general method.
 
