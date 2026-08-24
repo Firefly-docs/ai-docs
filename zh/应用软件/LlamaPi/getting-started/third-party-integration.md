@@ -1,6 +1,6 @@
 # 接入第三方应用
 
-LlamaPi 可以通过 OpenAI 兼容 API 为第三方应用提供本地大模型能力。只要应用支持自定义 OpenAI Base URL，通常就可以填写 LlamaPi 的服务地址、模型 ID 和 API Key 后进行连接。
+LlamaPi 可以通过 OpenAI 兼容 API 为第三方应用提供本地大模型能力。
 
 本章以对话模型为例介绍通用接入方法。接口字段和完整能力范围见[API 接口详解](../advanced-guides/api-reference.md)。
 
@@ -44,7 +44,8 @@ qwen3:4b@rkllm-rk3588      qwen3:4b    chat   rkllm/rk3588   ● active     1   
 在输出中找到准备接入的模型，并确认：
 
 - `MODEL` 列与需要使用的模型名称一致。如果同名模型有多行记录，可通过 `PLATFORM` 列区分推理平台变体。
-- `TYPE` 为 `chat` 的模型可以接收对话请求，`TYPE` 为 `embedding` 的模型可以接收词嵌入推理请求。`STATUS` 为 `● active` 表示模型已加载，可以接收对应类型的请求。
+- `TYPE` 为 `chat` 的模型可以接收对话请求，`TYPE` 为 `embedding` 的模型可以接收词嵌入推理请求。
+- `STATUS` 为 `● active` 表示模型已加载，可以接收对应类型的请求。
 
 确认后，将同一行 `ID` 列的完整值作为第三方应用中的模型名称，不要只填写 `MODEL` 列中的显示名称。
 
@@ -54,32 +55,64 @@ qwen3:4b@rkllm-rk3588      qwen3:4b    chat   rkllm/rk3588   ● active     1   
 llamapi load qwen3:4b
 ```
 
-### 确认网络可达
+### 确认服务地址可达
 
-在第三方应用所在设备上，将下面地址中的 IP 替换为运行 LlamaPi 的设备实际 IP。
+#### 本地访问 LlamaPi
 
-在 Linux 系统终端执行：
+如果第三方应用与 LlamaPi 运行在同一设备上，使用以下服务地址：
+
+```text
+http://127.0.0.1:9265/v1
+```
+
+在该设备的 Linux 终端中执行：
 
 ```bash
-curl -s http://192.168.1.100:9265/health
+curl -s http://127.0.0.1:9265/health
 ```
 
-在 Windows 终端（PowerShell 或命令提示符）执行：
+如果使用 Windows，请在 PowerShell 或命令提示符中执行：
 
 ```powershell
-curl.exe -s http://192.168.1.100:9265/health
+curl.exe -s http://127.0.0.1:9265/health
 ```
 
-返回 `ok` 表示第三方应用所在设备可以访问 LlamaPi 服务。如果连接超时或被拒绝，请检查设备 IP、防火墙和端口 `9265`。
+#### 局域网内访问 LlamaPi
 
-### 确认服务接口可用
+如果第三方应用位于同一局域网中的其他设备上，需要先在运行 LlamaPi 的设备上查看其 IP 地址：
 
-建议先在能够访问 LlamaPi 服务的终端中，根据接入需求验证对话接口或词嵌入接口。
+```bash
+hostname -I
+```
+
+将下方地址中的 `<设备 IP>` 替换为查询到的实际 IP 地址：
+
+```text
+http://<设备 IP>:9265/v1
+```
+
+在第三方应用所在设备上测试连通性。如果该设备运行 Linux，请在终端执行：
+
+```bash
+curl -s http://<设备 IP>:9265/health
+```
+
+如果该设备运行 Windows，请在 PowerShell 或命令提示符中执行：
+
+```powershell
+curl.exe -s http://<设备 IP>:9265/health
+```
+
+以上命令返回 `ok` 表示第三方应用所在设备可以访问 LlamaPi 服务。如果连接超时或被拒绝，请检查设备 IP、防火墙和端口 `9265`。
+
+### 确认推理接口可用
+
+建议先在能够访问 LlamaPi 服务的终端中，根据接入需求验证对话接口或词嵌入接口。以下命令中的 `<设备 IP>` 请按照上文说明替换为 `127.0.0.1` 或运行 LlamaPi 设备的实际 IP。
 
 对话接口（对应 `TYPE` 为 `chat` 的模型）：
 
 ```bash
-curl http://127.0.0.1:9265/v1/chat/completions \
+curl http://<设备 IP>:9265/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
     "model": "qwen3:4b@rkllm-rk3588",
@@ -93,7 +126,7 @@ curl http://127.0.0.1:9265/v1/chat/completions \
 词嵌入接口（对应 `TYPE` 为 `embedding` 的模型）：
 
 ```bash
-curl http://127.0.0.1:9265/v1/embeddings \
+curl http://<设备 IP>:9265/v1/embeddings \
   -H 'Content-Type: application/json' \
   -d '{
     "model": "bge-m3@rknn2-rk3588",
@@ -101,60 +134,34 @@ curl http://127.0.0.1:9265/v1/embeddings \
   }'
 ```
 
-将 `model` 替换为 `llamapi ps` 显示的实际模型 ID。通过局域网访问时，还需要将 `127.0.0.1` 替换为运行 LlamaPi 的设备 IP。
+将 `model` 替换为 `llamapi ps` 显示的实际模型 ID。
 
 ## 配置第三方应用
-
-### 确定服务地址
-
-如果第三方应用与 LlamaPi 运行在同一设备上，使用：
-
-```text
-http://127.0.0.1:9265/v1
-```
-
-如果第三方应用位于同一局域网中的其他设备上，需要先在运行 LlamaPi 的设备上查看其 IP 地址：
-
-```bash
-hostname -I
-```
-
-假设查询到的设备 IP 为 `192.168.1.100`，将其替换 `<设备 IP>` 后，服务地址为：
-
-```text
-http://192.168.1.100:9265/v1
-```
-
-### 填写连接参数
-
-第三方应用通常需要以下配置：
-
-| 配置项 | 填写内容 |
-|:---:|:---:|
-| OpenAI Base URL | `http://<设备 IP>:9265/v1` |
-| 模型 | `llamapi ps` 显示的模型 ID |
-| API Key | 如果应用要求必填，可填写任意非空内容 |
-
-上面的检查结果中，模型 ID 为：
-
-```text
-qwen3:4b@rkllm-rk3588
-```
-
-### 配置应用并发送测试消息
 
 不同应用的设置名称可能不同，但通用配置流程如下：
 
 1. 在应用中选择 OpenAI 或 OpenAI-compatible 服务提供方。
 2. 找到自定义 Base URL、API Endpoint 或服务地址的设置。
-3. 按照上表填写 Base URL、模型和 API Key。
+3. 填写前述步骤中确认的 Base URL 和模型 ID。如果应用要求填写 API Key，请填写任意非空内容。
 4. 保存配置并发送一条测试消息。
+
+配置项填写示例：
+
+| 配置项 | 填写内容 |
+|:---:|:---:|
+| OpenAI Base URL | `http://<设备 IP>:9265/v1` |
+| 模型 | `llamapi ps` 显示的模型 ID（例如：`qwen3:4b@rkllm-rk3588`） |
+| API Key | 如果应用要求必填，可填写任意非空内容 |
 
 如果应用会自动查询模型列表，应确认它访问的是 `/v1/models`。如果应用不能自定义 Base URL，或者只接受特定云服务地址，则无法使用这种通用方式直接接入。
 
-> ⚠️ <strong style="color: #dc2626;">安全提醒</strong>：当前 LlamaPi 不提供 API 鉴权。第三方应用中填写的 API Key 仅用于满足客户端的必填校验，不会被 LlamaPi 验证，也不能限制访问。
+> ⚠️ <strong style="color: #dc2626;">安全提醒</strong>：当前 LlamaPi 不提供 API 鉴权。
 >
-> 建议仅在本机或可信局域网中使用，不要直接将端口 `9265` 暴露到公网。需要跨网络访问时，请配置防火墙、反向代理和访问认证。详细说明见[服务配置与运维](../advanced-guides/server-operations.md#配置安全与网络访问)。
+> 第三方应用中填写的 API Key 仅用于满足客户端的必填校验，不会被 LlamaPi 验证，也不能限制访问。
+>
+> 建议仅在本机或可信局域网中使用，不要直接将端口 `9265` 暴露到公网。
+>
+> 需要跨网络访问时，请配置防火墙、反向代理和访问认证。详细说明见[服务配置与运维](../advanced-guides/server-operations.md#配置安全与网络访问)。
 
 ## 常见连接问题
 
@@ -163,7 +170,7 @@ qwen3:4b@rkllm-rk3588
 | 无法连接服务 | 检查设备 IP、端口、LlamaPi 服务状态和网络连通性 |
 | 找不到模型 | 执行 `llamapi ps`，确认模型已加载并使用完整模型 ID |
 | API Key 报空 | 在第三方应用中填写任意非空值 |
-| 对话接口返回模型类型错误 | 确认使用的是 `chat` 模型，而不是 Embedding 模型 |
+| 对话接口返回模型类型错误 | 确认使用的是 `chat` 模型，而不是 `embedding` 模型 |
 | 局域网可达但请求失败 | 检查设备防火墙是否允许访问端口 `9265` |
 
 更多问题见[常见问题与故障排查](../llamapi/faq.md)。
