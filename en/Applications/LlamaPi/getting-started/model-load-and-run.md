@@ -57,12 +57,6 @@ Enter `"""` to start or finish multiline input. Press `Ctrl+C` during generation
 
 The `load` command loads a downloaded model into the LlamaPi service. The command finishes after loading completes, and closing the terminal does not affect the deployed model.
 
-Before using `load`, download the model and make sure the LlamaPi service is running. If the service is stopped, run:
-
-```bash
-sudo systemctl start llamapi-server
-```
-
 Load and deploy one model instance:
 
 ```bash

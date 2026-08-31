@@ -57,12 +57,6 @@ llamapi run qwen3:4b --system "你是一名嵌入式 Linux 工程师"
 
 `load` 会将已下载的模型加载到 LlamaPi 服务。加载完成后命令即可结束，关闭当前终端不会影响已部署的模型。
 
-使用 `load` 前，需要先下载模型并确保 LlamaPi 服务正在运行。如果服务未运行，可以执行：
-
-```bash
-sudo systemctl start llamapi-server
-```
-
 加载并部署一个模型实例：
 
 ```bash
