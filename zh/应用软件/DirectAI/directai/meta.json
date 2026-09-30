@@ -1,0 +1,6 @@
+{
+  "title": "DirectAI",
+  "collapsible": true,
+  "defaultOpen": true,
+  "pages": ["introduction", "faq"]
+}

@@ -1,0 +1,6 @@
+{
+  "title": "应用介绍",
+  "collapsible": true,
+  "defaultOpen": true,
+  "pages": ["llamapi-app"]
+}

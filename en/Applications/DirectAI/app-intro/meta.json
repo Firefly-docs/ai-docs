@@ -1,0 +1,6 @@
+{
+  "title": "App Highlights",
+  "collapsible": true,
+  "defaultOpen": true,
+  "pages": ["llamapi-app"]
+}

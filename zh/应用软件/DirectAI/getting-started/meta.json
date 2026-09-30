@@ -1,0 +1,9 @@
+{
+  "title": "入门教程",
+  "collapsible": true,
+  "defaultOpen": true,
+  "pages": [
+    "quickstart",
+    "install-app"
+  ]
+}
