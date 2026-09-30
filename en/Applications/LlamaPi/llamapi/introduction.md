@@ -36,14 +36,17 @@ LlamaPi is not a model or a single inference engine. It is a deployment and mana
 
 ## Components
 
-LlamaPi has two main components:
+LlamaPi has three main components:
 
 | Component | Purpose |
 |:---:|:---:|
 | `llamapi-cli` | Command-line component for discovering, downloading, running, and managing models; invoked with the `llamapi` command |
 | `llamapi-server` | Service component that detects inference platforms, loads models, manages model instances, and provides HTTP APIs |
+| `llamapi-modelstore` | Service component responsible for remote model discovery, downloads, and local model file management |
 
-`llamapi-cli` provides convenient interactive operations and common workflows, while `llamapi-server` hosts persistent model services. Together they cover the path from obtaining a model to connecting an application.
+`llamapi-cli` provides convenient interactive operations and common workflows, `llamapi-server` hosts persistent model inference services, and `llamapi-modelstore` handles model downloads and local file management. Together they cover the path from obtaining a model to connecting an application.
+
+In addition, LlamaPi provides a Windows client that runs on the DirectAI platform and can download and deploy models and chat with them through a graphical interface. See [Using the Client](../getting-started/client-usage.md).
 
 ## Supported Scope and Current Limitations
 
@@ -59,6 +62,7 @@ LlamaPi has two main components:
 - Run and deploy models: [Run and Deploy Models](../getting-started/model-load-and-run.md)
 - Configure automatic model loading: [Persistent Deployment](../getting-started/model-persistence.md)
 - Connect an existing application to a local model: [Connect Third-Party Applications](../getting-started/third-party-integration.md)
+- Use the graphical client on a PC: [Using the Client](../getting-started/client-usage.md)
 - Look up complete command options: [Terminal Command Guide](../advanced-guides/cli-command-guide.md)
 - Configure and operate the service: [Service Configuration and Operations](../advanced-guides/server-operations.md)
 - Build an API integration: [API Reference](../advanced-guides/api-reference.md)

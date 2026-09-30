@@ -1,19 +1,21 @@
 # 常见问题与故障排查
 
-本章汇总 `llamapi-cli`、`llamapi-server` 和 API 使用过程中的常见问题。排查前建议先运行以下命令：
+本章汇总 `llamapi-cli`、`llamapi-server`、`llamapi-modelstore` 和 API 使用过程中的常见问题。排查前建议先运行以下命令：
 
 ```bash
 llamapi platform                         # 检查硬件平台和服务状态
 llamapi ps                               # 查看已加载模型和自动加载配置
 systemctl status llamapi-server          # 查看 llamapi-server 服务状态
 curl -s http://127.0.0.1:9265/health     # 检查 API 健康状态
+systemctl status llamapi-modelstore      # 查看 modelstore 服务状态
+curl -s http://127.0.0.1:9266/health     # 检查 modelstore 健康状态
 ```
 
 ## 快速定位
 
 | 问题现象 | 排查分类 |
 |:---:|:---:|
-| `llamapi-cli` 与 `llamapi-server` 版本不一致 | [版本与软件包](#版本与软件包) |
+| 各组件版本不一致 | [版本与软件包](#版本与软件包) |
 | 服务未运行、健康检查失败或未检测到可用推理平台 | [服务状态与平台检测](#服务状态与平台检测) |
 | 模型列表、下载源或平台变体异常 | [模型查询、下载与选择](#模型查询下载与选择) |
 | 模型加载失败、实例异常、运行时清理问题 | [模型加载与实例管理](#模型加载与实例管理) |
@@ -22,7 +24,7 @@ curl -s http://127.0.0.1:9265/health     # 检查 API 健康状态
 
 ## 版本与软件包
 
-### 检查 `llamapi-cli` 与 `llamapi-server` 版本一致性
+### 检查各组件版本一致性
 
 检查 `llamapi-cli`：
 
@@ -34,10 +36,10 @@ llamapi --version
 
 ```bash
 dpkg-query -W -f='${Package}: ${Version}\n' \
-  firefly-llamapi-cli firefly-llamapi-server
+  firefly-llamapi-cli firefly-llamapi-server firefly-llamapi-modelstore
 ```
 
-`firefly-llamapi-cli` 和 `firefly-llamapi-server` 的版本号应保持一致。
+`firefly-llamapi-cli`、`firefly-llamapi-server` 和 `firefly-llamapi-modelstore` 的版本号应保持一致。
 
 ## 服务状态与平台检测
 
@@ -151,13 +153,13 @@ llamapi run qwen3:4b --platform rknn3/rk1828
 
 ### 远程模型列表查询超时
 
-默认 `auto` 模式会并发访问 Hugging Face 和 ModelScope。全部来源都失败时，错误信息会列出每个来源的原因和尝试次数。
+远程模型列表由 modelstore 服务获取和缓存，首次查询需要等待元数据获取完成，可能耗时数十秒。只有从未成功获取过元数据（例如服务首次启动且所有下载源不可达）时，查询才会失败。
 
 可以：
 
 - 检查设备网络和 DNS。
-- 明确指定可访问的下载源。
-- 在 `llamapi-cli` 配置中将 `download.source` 设置为 `modelscope` 或 `huggingface`。
+- 明确指定可访问的下载源：`llamapi pull qwen3:4b --source modelscope`。
+- 在 modelstore 配置文件 `/etc/llamapi-modelstore/config.toml` 中将 `download.source` 设置为 `modelscope` 或 `huggingface`。
 - 使用 `llamapi list --all` 判断问题是否与 `llamapi-server` 平台检测有关。
 
 ### 同名模型存在多个平台变体
@@ -332,9 +334,10 @@ llamapi platform
 llamapi list
 llamapi ps
 systemctl status llamapi-server
+systemctl status llamapi-modelstore
 journalctl -u llamapi-server -b
 curl -s http://127.0.0.1:9265/v1/platforms
 curl -s http://127.0.0.1:9265/v1/models
 ```
 
-同时记录设备型号、芯片型号、执行命令、完整错误输出和 `llamapi-server` 配置中相关字段。提交日志前应检查是否包含敏感路径或业务数据。
+同时记录设备型号、芯片型号、执行命令、完整错误输出和 `llamapi-server`、`llamapi-modelstore` 配置中相关字段。提交日志前应检查是否包含敏感路径或业务数据。

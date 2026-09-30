@@ -36,14 +36,17 @@ LlamaPi 不是单个模型或单一推理引擎，而是一套连接设备、模
 
 ## 软件组成
 
-LlamaPi 由两个主要组件组成：
+LlamaPi 由三个主要组件组成：
 
 | 组件 | 作用 |
 |:---:|:---:|
 | `llamapi-cli` | 用于发现、下载、运行和管理模型的命令行工具；命令入口为 `llamapi` |
 | `llamapi-server` | 负责检测推理平台、加载模型、管理模型实例并提供 HTTP API 的服务组件 |
+| `llamapi-modelstore` | 负责远程模型查找、下载和本地模型文件管理的服务组件 |
 
-`llamapi-cli` 为交互操作和常见任务提供便捷入口，`llamapi-server` 负责持续运行的模型服务。两者配合完成从模型获取到应用接入的完整流程。
+`llamapi-cli` 为交互操作和常见任务提供便捷入口，`llamapi-server` 提供持续运行的模型推理服务，`llamapi-modelstore` 负责模型文件的下载与本地管理。三者配合完成从模型获取到应用接入的完整流程。
+
+此外，LlamaPi 提供运行在 DirectAI 平台上的 Windows 客户端，可在图形界面中完成模型的下载、部署和对话，见[客户端的使用](../getting-started/client-usage.md)。
 
 ## 支持范围与当前限制
 
@@ -59,6 +62,7 @@ LlamaPi 由两个主要组件组成：
 - 运行和部署模型：[模型运行与部署](../getting-started/model-load-and-run.md)
 - 配置模型自动加载：[持久化部署](../getting-started/model-persistence.md)
 - 将本地模型接入现有应用：[接入第三方应用](../getting-started/third-party-integration.md)
+- 在电脑上使用图形界面客户端：[客户端的使用](../getting-started/client-usage.md)
 - 查询完整命令参数：[终端命令详解](../advanced-guides/cli-command-guide.md)
 - 配置和维护服务：[服务配置与运维](../advanced-guides/server-operations.md)
 - 开发 API 集成：[API 接口详解](../advanced-guides/api-reference.md)

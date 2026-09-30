@@ -49,6 +49,7 @@ llamapi run qwen3:4b --system "你是一名嵌入式 Linux 工程师"
 | `/set <key> <value>` | 修改生成参数 |
 | `/show info` | 显示当前模型信息 |
 | `/show params` | 显示当前生成参数 |
+| `/show system` | 显示当前系统提示词 |
 | `/exit` | 退出对话 |
 
 输入 `"""` 可以开始或结束多行输入。生成过程中按 `Ctrl+C` 可中断当前回答。

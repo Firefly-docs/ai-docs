@@ -1,19 +1,21 @@
 # FAQ and Troubleshooting
 
-This chapter covers common issues when using `llamapi-cli`, `llamapi-server`, and the APIs. Start with these checks:
+This chapter covers common issues when using `llamapi-cli`, `llamapi-server`, `llamapi-modelstore`, and the APIs. Start with these checks:
 
 ```bash
 llamapi platform                         # Check hardware platforms and service state
 llamapi ps                               # List loaded models and automatic-loading entries
 systemctl status llamapi-server          # Check the llamapi-server service state
 curl -s http://127.0.0.1:9265/health     # Check API health
+systemctl status llamapi-modelstore      # Check the modelstore service state
+curl -s http://127.0.0.1:9266/health     # Check modelstore health
 ```
 
 ## Quick Triage
 
 | Symptom | Troubleshooting area |
 |:---:|:---:|
-| `llamapi-cli` and `llamapi-server` version mismatch | [Versions and Packages](#versions-and-packages) |
+| Component version mismatch | [Versions and Packages](#versions-and-packages) |
 | Service stopped, health failure, or no available inference platform detected | [Service Status and Platform Detection](#service-status-and-platform-detection) |
 | Model listing, source, download, or variant-selection problem | [Model Discovery, Download, and Selection](#model-discovery-download-and-selection) |
 | Model loading, instance, capacity, or runtime cleanup problem | [Model Loading and Instance Management](#model-loading-and-instance-management) |
@@ -22,7 +24,7 @@ curl -s http://127.0.0.1:9265/health     # Check API health
 
 ## Versions and Packages
 
-### Check `llamapi-cli` and `llamapi-server` Version Consistency
+### Check Component Version Consistency
 
 Check `llamapi-cli`:
 
@@ -34,10 +36,10 @@ Check the Debian packages:
 
 ```bash
 dpkg-query -W -f='${Package}: ${Version}\n' \
-  firefly-llamapi-cli firefly-llamapi-server
+  firefly-llamapi-cli firefly-llamapi-server firefly-llamapi-modelstore
 ```
 
-`firefly-llamapi-cli` and `firefly-llamapi-server` must have the same version.
+`firefly-llamapi-cli`, `firefly-llamapi-server`, and `firefly-llamapi-modelstore` must have the same version.
 
 ## Service Status and Platform Detection
 
@@ -141,13 +143,13 @@ The repository may not exist or the model name may be wrong.
 
 ### Remote Model Lookup Timeout
 
-The default `auto` mode queries Hugging Face and ModelScope concurrently. When all sources fail, the error reports a reason and attempt count for each source.
+The remote model list is fetched and cached by the modelstore service. The first query waits for the metadata fetch to finish, which can take tens of seconds. The query fails only when metadata has never been fetched successfully, for example when the service just started and no download source is reachable.
 
 You can:
 
 - Check network connectivity and DNS.
-- Select a reachable source explicitly.
-- Set `download.source` to `modelscope` or `huggingface` in the `llamapi-cli` configuration.
+- Select a reachable source explicitly: `llamapi pull qwen3:4b --source modelscope`.
+- Set `download.source` to `modelscope` or `huggingface` in the modelstore configuration file `/etc/llamapi-modelstore/config.toml`.
 - Use `llamapi list --all` to separate repository access from `llamapi-server` platform detection.
 
 ### Multiple Platform Variants for One Model
@@ -321,9 +323,10 @@ llamapi platform
 llamapi list
 llamapi ps
 systemctl status llamapi-server
+systemctl status llamapi-modelstore
 journalctl -u llamapi-server -b
 curl -s http://127.0.0.1:9265/v1/platforms
 curl -s http://127.0.0.1:9265/v1/models
 ```
 
-Also record the device, chip, command, complete error output, and relevant `llamapi-server` configuration. Review logs for sensitive paths or business data before sharing them.
+Also record the device, chip, command, complete error output, and relevant `llamapi-server` and `llamapi-modelstore` configuration. Review logs for sensitive paths or business data before sharing them.

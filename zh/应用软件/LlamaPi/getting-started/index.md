@@ -5,3 +5,4 @@
 - [模型运行与部署](./model-load-and-run.md)
 - [持久化部署](./model-persistence.md)
 - [接入第三方应用](./third-party-integration.md)
+- [客户端的使用](./client-usage.md)

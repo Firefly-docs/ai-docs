@@ -10,7 +10,7 @@ If the Firefly APT repository is configured on the device, install LlamaPi direc
 sudo apt install llamapi
 ```
 
-Alternatively, copy the deb packages to the device, open their directory, and install them locally:
+Alternatively, download the deb packages from the [Firefly website](https://community.t-firefly.com/doc/download/428), copy them to the device, open their directory, and install them locally:
 
 ```bash
 sudo dpkg -i ./firefly-llamapi-*.deb
@@ -18,21 +18,25 @@ sudo dpkg -i ./firefly-llamapi-*.deb
 
 ## Use LlamaPi to Run a Model
 
-Use the `llamapi run` command to run the `qwen3:4b` model:
+Run the `qwen3.5:4b` model with the `llamapi run` command:
 
 ```bash
-llamapi run qwen3:4b
+llamapi run qwen3.5:4b
 ```
 
 The `llamapi run` command automatically selects and downloads a model available on the current hardware:
 
-![quickstart-1](./images/quickstart/quickstart-1.png)
+![quickstart-1](./images/quickstart/quick​start​-1.png)
 
-After the model is downloaded and loaded, the terminal enters an interactive chat:
+After the model is downloaded and loaded, the terminal enters an interactive chat. Chat with the model at the prompt:
 
-![quickstart-2](./images/quickstart/quickstart-2.png)
+![quickstart-2](./images/quickstart/qu​i​ckstart​-2.png)
 
-Chat with the model at the prompt, then use `/exit` or `Ctrl+D` to leave.
+For models with multimodal capabilities, use `@` to attach files in the conversation:
+
+![quickstart-3](./images/quickstart/qu​i​ckstart​-3.png)
+
+Use `/exit` or `Ctrl+D` to leave the chat.
 
 ## View Models Available on the Current Hardware
 
@@ -44,7 +48,7 @@ llamapi list --online
 
 The following example uses an RK3588 + RK1828 hardware platform:
 
-![quickstart-3](./images/quickstart/quickstart-3.png)
+![quickstart-4](./images/quickstart/qu​i​ckstart​-4.png)
 
 ## Next Steps
 
@@ -52,3 +56,4 @@ The following example uses an RK3588 + RK1828 hardware platform:
 - Run and deploy models: [Run and Deploy Models](./model-load-and-run.md)
 - Configure automatic loading at service startup: [Persistent Deployment](./model-persistence.md)
 - Connect a model to an existing application: [Connect Third-Party Applications](./third-party-integration.md)
+- Use LlamaPi from a PC with a graphical interface: [Using the Client](./client-usage.md)

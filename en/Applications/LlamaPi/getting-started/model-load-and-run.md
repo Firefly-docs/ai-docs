@@ -49,6 +49,7 @@ The following commands are available in interactive mode:
 | `/set <key> <value>` | Change a generation parameter |
 | `/show info` | Show current model information |
 | `/show params` | Show current generation parameters |
+| `/show system` | Show the current system prompt |
 | `/exit` | Exit the chat |
 
 Enter `"""` to start or finish multiline input. Press `Ctrl+C` during generation to interrupt the current response.

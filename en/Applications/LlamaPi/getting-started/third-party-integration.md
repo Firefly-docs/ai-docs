@@ -163,7 +163,7 @@ If the application discovers models automatically, confirm that it requests `/v1
 >
 > An API key entered in a third-party application only satisfies the client's required-field validation; LlamaPi does not verify it, and it does not restrict access.
 >
-> Use the service only on the local device or a trusted LAN. Do not expose port `9265` directly to the public internet.
+> Use the service only on the local device or a trusted LAN. Do not expose ports `9265` and `9266` directly to the public internet. Port `9266` belongs to the model-management service, which is also unauthenticated and provides an API that deletes local models.
 >
 > For access across untrusted networks, add a firewall, reverse proxy, and authentication. See [Service Configuration and Operations](../advanced-guides/server-operations.md#network-access-and-security).
 
