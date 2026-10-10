@@ -10,7 +10,7 @@ If the Firefly APT repository is configured on the device, install LlamaPi direc
 sudo apt install llamapi
 ```
 
-Alternatively, download the deb packages from the [Firefly website](https://community.t-firefly.com/doc/download/428), copy them to the device, open their directory, and install them locally:
+Alternatively, download the deb packages from the [Firefly website](https://community.t-firefly.com/doc/download/428) , copy them to the device, open their directory, and install them locally:
 
 ```bash
 sudo dpkg -i ./firefly-llamapi-*.deb
@@ -30,12 +30,12 @@ The `llamapi run` command automatically selects and downloads a model available 
 
 After the model is downloaded and loaded, the terminal enters an interactive chat. Chat with the model at the prompt:
 
-![quickstart-2](./images/quickstart/qu​i​ckstart​-2.png)
+![quickstart-2](./images/quickstart/quick​start​-2.png)
 
 For models with multimodal capabilities, use `@` to attach files in the conversation:
 
-![quickstart-3](./images/quickstart/qu​i​ckstart​-3.png)
-
+![quickstart-3](./images/quickstart/quick​start​-3.png)
+![quickstart-3-1](./images/quickstart/quick​start​-3-1.png)
 Use `/exit` or `Ctrl+D` to leave the chat.
 
 ## View Models Available on the Current Hardware

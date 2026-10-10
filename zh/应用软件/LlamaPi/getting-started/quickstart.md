@@ -10,7 +10,7 @@
 sudo apt install llamapi
 ```
 
-也可以从 [Firefly 官网下载页](https://community.t-firefly.com/doc/download/428)获取 deb 安装包，将其复制到设备上，再进入文件所在目录安装：
+也可以从 [Firefly 官网下载页](https://community.t-firefly.com/doc/download/428) 获取 deb 安装包，将其复制到设备上，再进入文件所在目录安装：
 
 ```bash
 sudo dpkg -i ./firefly-llamapi-*.deb
@@ -27,8 +27,8 @@ llamapi run qwen3.5:4b
 模型下载并加载完成后，终端会进入交互式对话，在提示符中与模型进行对话：
 ![quickstart-2](./images/quickstart/qu​i​ckstart​-2.png)
 对于具有多模态能力的模型可以使用`@`在对话中引入附件：
-![quickstart-3](./images/quickstart/qu​i​ckstart​-3.png)
-
+![quickstart-3](./images/quickstart/quick​start​-3.png)
+![quickstart-3-1](./images/quickstart/quick​start​-3-1.png)
 
 使用 `/exit` 或 `Ctrl+D` 退出对话。
 
