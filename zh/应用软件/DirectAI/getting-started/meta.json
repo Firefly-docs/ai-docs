@@ -4,6 +4,7 @@
   "defaultOpen": true,
   "pages": [
     "quickstart",
-    "install-app"
+    "install-app",
+    "update"
   ]
 }

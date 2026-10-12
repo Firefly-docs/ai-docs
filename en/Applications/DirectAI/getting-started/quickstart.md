@@ -34,4 +34,5 @@ You can also drag an existing app package into the app store window to import it
 ## Next Steps
 
 - Install, update, and uninstall apps: [Install Apps](./install-app.md)
+- When the client needs an update: [Software Update](./update.md)
 - Device not connecting or sign-in failing: [FAQ and Troubleshooting](../directai/faq.md)

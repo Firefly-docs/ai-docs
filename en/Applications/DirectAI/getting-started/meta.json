@@ -2,5 +2,5 @@
   "title": "Getting Started",
   "collapsible": true,
   "defaultOpen": true,
-  "pages": ["quickstart", "install-app"]
+  "pages": ["quickstart", "install-app", "update"]
 }
